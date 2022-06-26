@@ -1,0 +1,18 @@
+.promo {
+  width: 93.75%;
+  background: #f5f5f5;
+  margin: auto;
+  min-height: 493px;
+}
+
+.promo__title {
+  margin: 0 auto;
+  padding: 160px 0 217px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  max-width: 730px;
+}
