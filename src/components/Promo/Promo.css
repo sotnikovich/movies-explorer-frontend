@@ -3,11 +3,21 @@
   background: #f5f5f5;
   margin: auto;
   min-height: 493px;
+  border-radius: 10px;
 }
-
+@media screen and (max-width: 768px) {
+  .promo {
+    width: 94.79%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .promo {
+    width: 91.25%;
+  }
+}
 .promo__title {
   margin: 0 auto;
-  padding: 160px 0 217px;
+  padding: 160px 0 151px;
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
@@ -15,4 +25,20 @@
   text-align: center;
   letter-spacing: -0.04em;
   max-width: 730px;
+}
+@media screen and (max-width: 768px) {
+  .promo__title {
+    font-size: 40px;
+    max-width: 680px;
+    padding-top: 360px;
+    padding-bottom: 314px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .promo__title {
+    font-size: 29px;
+    line-height: 37px;
+    padding-top: 220px;
+    padding-bottom: 212px;
+  }
 }
