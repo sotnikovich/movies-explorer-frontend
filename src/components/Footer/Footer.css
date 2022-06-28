@@ -1,7 +1,7 @@
 .footer {
   background: #fafafa;
-  margin: auto;
-  padding: 79px 70px 0;
+  margin: 0 auto;
+  padding: 79px 5.47% 0;
 }
 .footer__title {
   font-style: normal;
@@ -54,6 +54,7 @@
   .footer {
     background: none;
     width: 92.19%;
+    padding: 79px 0 0;
   }
 }
 @media screen and (max-width: 480px) {
@@ -65,8 +66,8 @@
     margin-bottom: 30px;
   }
   .footer {
-    padding-left: 10px;
-    padding-right: 10px;
+    width: 93.75%;
+    padding: 0;
   }
   .footer__bottom {
     justify-content: center;

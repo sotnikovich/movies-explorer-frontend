@@ -3,7 +3,7 @@ import { MovieCardList } from "../MovieCardList/MovieCardList";
 import { SearchForm } from "../SearchForm/SearchForm";
 import { Footer } from "../Footer/Footer";
 import "./Movies.css";
-export const Movies = () => {
+export const Movies = ({ isLoadingMovies }) => {
   return (
     <section className="movies">
       <Header
@@ -14,7 +14,8 @@ export const Movies = () => {
         isProfile={false}
       />
       <SearchForm />
-      <MovieCardList />
+      <MovieCardList isSaved={false} isLoadingMovies={isLoadingMovies} />
+      <button className="movies__more">Еще</button>
       <Footer />
     </section>
   );

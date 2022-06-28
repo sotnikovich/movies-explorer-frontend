@@ -9,12 +9,12 @@ export const SavedMovies = () => {
       <Header
         isLogged={true}
         isMain={false}
-        isMovies={true}
-        isSavedMovies={false}
+        isMovies={false}
+        isSavedMovies={true}
         isProfile={false}
       />
       <SearchForm />
-      <MovieCardList />
+      <MovieCardList isSaved={true} />
       <Footer />
     </section>
   );

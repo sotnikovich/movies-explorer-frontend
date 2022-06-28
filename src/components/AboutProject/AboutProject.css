@@ -170,20 +170,21 @@
     text-align: center;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 480px) {
+  .project {
+    width: 88.75%;
+    margin: 0 auto;
+  }
   .project__title {
-    margin-left: 18px;
-    margin-right: 18px;
     padding-top: 70px;
     padding-bottom: 28px;
     font-size: 18px;
     line-height: 21.78px;
-    margin-bottom: 60px;
+    margin: 0 0 60px 0;
   }
   .project__content {
-    margin-left: 18px;
-    margin-right: 18px;
     flex-direction: column;
+    margin: 0 auto;
   }
   .project__content_container {
     margin-right: 0;

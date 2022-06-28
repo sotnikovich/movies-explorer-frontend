@@ -1,6 +1,6 @@
 import "./MoviesCard.css";
 
-export const MoviesCard = () => {
+export const MoviesCard = ({ isSaved }) => {
   return (
     <li className="card">
       <div className="card__head">
@@ -8,7 +8,11 @@ export const MoviesCard = () => {
           <p className="card__title">33 слова о дизайне</p>
           <p className="card__duration">1ч 47м</p>
         </div>
-        <div className="card__icon"></div>
+        {isSaved ? (
+          <button className="card__delete"></button>
+        ) : (
+          <button className="card__icon"></button>
+        )}
       </div>
       <div className="card__img"></div>
     </li>

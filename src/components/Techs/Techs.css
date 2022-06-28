@@ -66,8 +66,8 @@
 }
 @media screen and (max-width: 830px) {
   .techs {
-    padding-left: 6.51vw;
-    padding-right: 6.51vw;
+    padding-left: 6.51%;
+    padding-right: 6.51%;
   }
   .techs__subtitle {
     padding-top: 90px;
@@ -90,8 +90,9 @@
 }
 @media screen and (max-width: 580px) {
   .techs {
-    padding-left: 18px;
-    padding-right: 18px;
+    width: 88.75%;
+    padding: 0;
+    margin: 0 auto;
     background-color: white;
   }
   .techs__list_element {

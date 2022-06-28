@@ -51,12 +51,6 @@ export const Navigation = ({
       ) : (
         <div className="navigation__links">
           <Link
-            to="/movies"
-            className="navigation__link navigation__link_black"
-          >
-            Фильмы
-          </Link>
-          <Link
             to="/signup"
             className={
               isMain
@@ -76,7 +70,7 @@ export const Navigation = ({
           <div className="burger-menu__container">
             <button
               type="button"
-              className="burger-menu__button"
+              className="burger-menu__close"
               onClick={closeBurgerMenu}
             ></button>
             <div className="burger-menu__content">

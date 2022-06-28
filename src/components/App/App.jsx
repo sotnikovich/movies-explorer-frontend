@@ -4,6 +4,9 @@ import { Movies } from "../Movies/Movies";
 import { useState } from "react";
 import { SavedMovies } from "../SavedMovies/SavedMovies";
 import { Profile } from "../Profile/Profile";
+import { Register } from "../Register/Register";
+import { Login } from "../Login/Login";
+import { NotFound } from "../../NotFound/NotFound";
 
 function App() {
   const [isLogged] = useState(false);
@@ -18,6 +21,9 @@ function App() {
           element={<SavedMovies isLogged={isLogged} />}
         />
         <Route path="/profile" element={<Profile isLogged={true} />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="/signin" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
