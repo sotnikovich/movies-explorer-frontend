@@ -25,7 +25,10 @@ export const Navigation = ({
               <Link to="/movies" className="navigation__movie">
                 Фильмы
               </Link>
-              <Link to="/saved-movies" className="navigation__movie">
+              <Link
+                to="/saved-movies"
+                className="navigation__movie navigation__movie_thin"
+              >
                 Сохранённые фильмы
               </Link>
             </div>
@@ -47,6 +50,12 @@ export const Navigation = ({
         </>
       ) : (
         <div className="navigation__links">
+          <Link
+            to="/movies"
+            className="navigation__link navigation__link_black"
+          >
+            Фильмы
+          </Link>
           <Link
             to="/signup"
             className={

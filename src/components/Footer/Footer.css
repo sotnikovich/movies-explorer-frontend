@@ -1,9 +1,7 @@
 .footer {
   background: #fafafa;
-  padding-top: 79px;
   margin: auto;
-  padding-left: 70px;
-  padding-right: 70px;
+  padding: 79px 70px 0;
 }
 .footer__title {
   font-style: normal;
@@ -55,6 +53,7 @@
 @media screen and (max-width: 768px) {
   .footer {
     background: none;
+    width: 92.19%;
   }
 }
 @media screen and (max-width: 480px) {

@@ -8,6 +8,7 @@ export const Header = ({
   isProfile,
   isMovies,
   isSavedMovies,
+  onClick,
 }) => {
   return (
     <header className="header">
@@ -18,6 +19,7 @@ export const Header = ({
         isProfile={isProfile}
         isMovies={isMovies}
         isSavedMovies={isSavedMovies}
+        onClick={onClick}
       />
     </header>
   );
