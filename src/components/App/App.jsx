@@ -210,6 +210,7 @@ function App() {
       }, 1000);
     }
   }
+
   function search(collection, searchText) {
     let result = [];
     collection.forEach((movie) => {
@@ -256,7 +257,6 @@ function App() {
   }, [isFilterMovies]);
 
   function movieDeleteFromSavedMovies(id) {
-    setIsLoadingMovies(true);
     MainApi.deleteSavedMovie({ token, id })
       .then(() => {
         const result = filterMoviesById(savedMoviesCollection, id);
@@ -270,16 +270,11 @@ function App() {
         );
       })
       .catch((err) => setServerError(true));
-    setTimeout(() => {
-      setIsLoadingMovies(false);
-    }, 1000);
   }
   function movieSaveInStore(movie) {
-    setIsLoadingMovies(true);
     MainApi.saveMovie({ token, movie })
       .then((res) => {
         const movies = [...savedMoviesCollection, res];
-        console.log(movies);
         localStorage.setItem("savedMovies", JSON.stringify(movies));
         setSavedMoviesCollection((prev) => [...prev, res]);
         if (isFilterMovies) {
@@ -290,9 +285,6 @@ function App() {
         }
       })
       .catch((err) => setServerError(true));
-    setTimeout(() => {
-      setIsLoadingMovies(false);
-    }, 1000);
   }
   function filterMoviesById(collection, id) {
     return collection.filter((item) => {

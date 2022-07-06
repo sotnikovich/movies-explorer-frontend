@@ -37,27 +37,23 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
-  transition: 1s;
   border: none;
   border-radius: 36px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("../../images/save9d.svg");
 }
 .card__like_active {
   background-image: url("../../images/like-active.svg");
-  background-position: center;
-  background-repeat: no-repeat;
 }
-.card__like_inactive {
-  background-image: url("../../images/save9d.svg");
 
-  background-repeat: no-repeat;
-  background-position: center;
-}
 .card__title {
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
   margin: 0 0 9px 0;
+  max-width: 300px;
 }
 .card__duration {
   font-style: normal;

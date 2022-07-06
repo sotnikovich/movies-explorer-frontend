@@ -32,16 +32,20 @@ export const MoviesCard = ({
     nameEN: movies.nameEN || "Нет",
   };
 
+  const cardLikeButtonClassName = `card__like ${
+    isLike ? "card__like_active" : " "
+  }`;
+
   function handleLikeCard() {
     if (!isLike) {
       movieSaveInStore(movie);
     } else {
       const searchMovie = savedMovies.find(
-        (item) => item.movieId === String(movies.id)
+        (item) => item.movieId === movies.id
       );
       movieDeleteFromSavedMovies(searchMovie._id);
+      setIsLike(false);
     }
-    setIsLike(isLike);
   }
 
   function deleteCard() {
@@ -74,11 +78,7 @@ export const MoviesCard = ({
           <button
             type="button"
             onClick={handleLikeCard}
-            className={
-              isLike
-                ? "card__like card__like_active"
-                : "card__like card__like_inactive"
-            }
+            className={cardLikeButtonClassName}
           ></button>
         )}
       </div>
