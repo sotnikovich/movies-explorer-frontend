@@ -41,6 +41,9 @@
   width: 396px;
   height: calc(100vh - 217px);
 }
+.register__field {
+  margin-bottom: 24px;
+}
 .register__text {
   font-size: 10px;
   font-style: normal;
@@ -64,12 +67,15 @@
   color: #000000;
   border: none;
   border-bottom: 1px solid #e8e8e8;
-  margin-bottom: 24px;
   width: 396px;
 }
 .register__input:focus {
   border-bottom: 1px solid #2be080;
   outline: 0;
+}
+.register__input_invalid {
+  color: #ee3465;
+  margin-bottom: 6px;
 }
 .register__error {
   font-size: 10px;
@@ -80,7 +86,6 @@
   text-align: left;
   color: #ee3465;
   margin: 0;
-  margin-bottom: 6px;
   min-height: 12px;
 }
 .register__links {
@@ -143,6 +148,12 @@
   display: flex;
   flex-direction: column;
   align-content: flex-end;
+}
+.register__button_invalid {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+  background: white;
+  cursor: auto;
 }
 @media screen and (max-width: 768px) {
   .register__logo {

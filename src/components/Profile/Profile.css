@@ -45,6 +45,19 @@
   line-height: 13px;
   color: #000000;
 }
+.profile__input {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px;
+  letter-spacing: 0px;
+  text-align: right;
+  color: #000000;
+  border: none;
+}
+.profile__input:focus {
+  outline: 0;
+}
 .profile__buttons {
   display: flex;
   flex-direction: column;
@@ -65,6 +78,9 @@
   transition: 1s;
   cursor: pointer;
   background: #ffffff;
+}
+.profile__button_invalid {
+  color: #ee3465;
 }
 .profile__button-submit:hover {
   opacity: 0.7;

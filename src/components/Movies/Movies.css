@@ -17,6 +17,10 @@
   height: 36px;
   padding: 0;
   justify-content: center;
+  cursor: pointer;
+}
+.movies__more_hide {
+  display: none;
 }
 @media screen and (max-width: 450px) {
   .movies__more {

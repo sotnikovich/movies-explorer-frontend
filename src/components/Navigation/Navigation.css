@@ -30,18 +30,15 @@
   letter-spacing: 0px;
   text-align: right;
   transition: 1s;
+  color: #000000;
 }
 .navigation__link:last-child {
   margin-right: 0;
-  color: #000000;
   background: #2be080;
   border-radius: 3px;
 }
 .navigation__link:hover {
   opacity: 0.7;
-}
-.navigation__link_black {
-  color: #000000;
 }
 .navigation__movie {
   display: flex;
@@ -91,7 +88,7 @@
   transition: 1s;
 }
 .navigation__account_main {
-  background: #5c5c5c;
+  background: #f9f9f9;
 }
 .navigation__account:hover {
   opacity: 0.7;
