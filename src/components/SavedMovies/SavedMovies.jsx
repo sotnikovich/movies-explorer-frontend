@@ -21,6 +21,7 @@ export const SavedMovies = ({
   React.useEffect(() => {
     clearAllErrors();
   }, []);
+
   function changeFilter() {
     setFilter();
   }
