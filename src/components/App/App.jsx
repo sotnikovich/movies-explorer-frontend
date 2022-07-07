@@ -73,6 +73,7 @@ function App() {
         });
     }
   }
+
   React.useEffect(() => {
     tokenCheck();
   }, []);
@@ -90,6 +91,7 @@ function App() {
           return setRegisterError("Некорректно заполнено одно из полей ");
       });
   }
+
   function onLogin({ email, password }) {
     MainApi.authorize({ email, password })
       .then((data) => {
@@ -128,6 +130,7 @@ function App() {
         .catch((err) => setProfileError("Не удалось загрузить данные"));
     }
   }
+
   function onSignOut() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("movies");
@@ -142,6 +145,7 @@ function App() {
     clearAllErrors();
     history.push("/");
   }
+
   function clearAllErrors() {
     setLoginError("");
     setRegisterError("");
@@ -271,6 +275,7 @@ function App() {
       })
       .catch((err) => setServerError(true));
   }
+
   function movieSaveInStore(movie) {
     MainApi.saveMovie({ token, movie })
       .then((res) => {
@@ -286,11 +291,13 @@ function App() {
       })
       .catch((err) => setServerError(true));
   }
+
   function filterMoviesById(collection, id) {
     return collection.filter((item) => {
       return item._id !== id;
     });
   }
+
   function changeProfile({ name, email }) {
     MainApi.editUserProfile({ token, name, email })
       .then((newUser) => {
@@ -305,6 +312,7 @@ function App() {
         setProfileError("Произошла ошибка при обновлении профиля")
       );
   }
+
   React.useEffect(() => {
     clearAllErrors();
     if (pathname === "/saved-movies") {
