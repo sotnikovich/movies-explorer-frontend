@@ -14,6 +14,7 @@ export const MoviesCard = ({
   const nowMovieSaved = savedMovies.find(
     (item) => item.nameRU === movies.nameRU && item.owner === currentUser._id
   );
+  
   const movie = {
     country: movies.country || "нет",
     director: movies.director || "Нет",
