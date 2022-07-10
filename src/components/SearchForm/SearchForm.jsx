@@ -16,12 +16,10 @@ export const SearchForm = ({
   function handleSearchMovies(e) {
     e.preventDefault();
     searchMovies(textInput);
-    setTextInput("");
   }
   function handleSearchSavedMovies(e) {
     e.preventDefault();
     searchSavedMovies(textInput);
-    setTextInput("");
   }
   function handleChangeFilter() {
     changeFilter();

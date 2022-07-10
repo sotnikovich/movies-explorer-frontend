@@ -14,9 +14,9 @@ export const MoviesCard = ({
   const nowMovieSaved = savedMovies.find(
     (item) => item.nameRU === movies.nameRU && item.owner === currentUser._id
   );
-  
+
   const movie = {
-    country: movies.country || "нет",
+    country: movies.country || "Нет",
     director: movies.director || "Нет",
     duration: movies.duration || 0,
     year: movies.year || "Нет",
@@ -60,6 +60,7 @@ export const MoviesCard = ({
   const durationMovie = `${Math.trunc(movies.duration / 60)}ч ${
     movies.duration % 60
   }м`;
+
   return (
     <li className="card" id={isSaved ? movies._id : movies.id}>
       <div className="card__head">

@@ -10,6 +10,7 @@
     "npm": "^8.13.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-responsive": "^9.0.0-beta.10",
     "react-router-dom": "^5.2.1",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
