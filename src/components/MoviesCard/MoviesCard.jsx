@@ -85,7 +85,7 @@ export const MoviesCard = ({
         )}
       </div>
       <a
-        href={isSaved ? movies.trailer : movies.trailerLink}
+        href={movies.trailerLink}
         className="card__trailer"
         target="_blank"
         rel="noreferrer"

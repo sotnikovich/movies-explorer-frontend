@@ -10,6 +10,7 @@
   width: 100%;
   height: 203px;
   object-fit: contain;
+  cursor: pointer;
 }
 .card__trailer {
   text-decoration: none;
