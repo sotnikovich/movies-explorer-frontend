@@ -105,50 +105,13 @@
   margin-right: 30px;
   align-items: center;
 }
-.filter-checkbox__button {
-  width: 36px;
-  height: 22px;
-  cursor: pointer;
-  transition: 1s;
-  margin: 0;
-  border: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-right: 12px;
-  background: #ffffff;
-  border-radius: 10px;
-}
-.filter-checkbox__button:hover {
-  opacity: 0.7;
-}
-.filter-checkbox__button_active {
-  background-image: url("../../images/filt-cb.svg");
-  background-repeat: no-repeat;
-}
-.filter-checkbox__button_inactive {
-  background-image: url("../../images/cb_inactive.svg");
-  background-repeat: no-repeat;
-}
-.filter-checkbox__text {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
-  color: #000000;
-  margin: 0;
-}
+
 .filter-checkbox_mobile {
   display: none;
 }
 @media screen and (max-width: 480px) {
   .filter-checkbox {
     display: none;
-  }
-  .filter-checkbox__button {
-    margin-right: 13px;
-  }
-  .filter-checkbox__text {
-    font-size: 11px;
   }
   .filter-checkbox_mobile {
     display: flex;

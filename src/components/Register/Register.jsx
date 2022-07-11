@@ -1,6 +1,7 @@
 import "./Register.css";
 import { Link } from "react-router-dom";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
+import { useState } from "react";
 
 export const Register = ({
   onRegister,
@@ -10,6 +11,7 @@ export const Register = ({
 }) => {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
+
   function handleRegister(e) {
     e.preventDefault();
     onRegister({
@@ -29,6 +31,7 @@ export const Register = ({
       setRegisterError("");
     }
   }
+
   return (
     <section className="register">
       <Link to="/" className="register__logo"></Link>
@@ -60,6 +63,7 @@ export const Register = ({
               onChange={handleChangeInput}
               required
               autoComplete="off"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
             />
             <span className="register__error">{errors.email}</span>
           </div>

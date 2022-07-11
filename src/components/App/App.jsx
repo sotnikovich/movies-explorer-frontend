@@ -21,6 +21,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 function App() {
   const [isLogged, setIsLogged] = React.useState(false);
   const [isFilterMovies, setIsFilterMovies] = React.useState(false);
+  const [isFilterSavedMovies, setIsFilterSavedMovies] = React.useState(false);
   const [moviesCollection, setMoviesCollection] = React.useState([]);
   const [savedMoviesCollection, setSavedMoviesCollection] = React.useState([]);
   const [foundMoviesList, setFoundMoviesList] = React.useState([]);
@@ -38,24 +39,23 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [isLoadingMovies, setIsLoadingMovies] = React.useState(false);
   const [token, setToken] = React.useState("");
+  const SHORT_DURATION = 40;
 
   const history = useHistory();
   const pathname = useLocation();
+  const isLocationMovies = pathname.pathname === "/movies";
+  const isLocationSavedMovies = pathname.pathname === "/saved-movies";
 
   function changeFilter() {
-    setIsFilterMovies(!isFilterMovies);
+    isLocationMovies
+      ? setIsFilterMovies(!isFilterMovies)
+      : setIsFilterSavedMovies(!isFilterSavedMovies);
   }
 
   function tokenCheck() {
     const jwt = localStorage.getItem("jwt");
     const movies = localStorage.getItem("movies");
     const savedMovies = localStorage.getItem("savedMovies");
-    const checkbox = JSON.parse(localStorage.getItem("checkbox"));
-    setIsFilterMovies(checkbox);
-    const checkboxSaved = JSON.parse(localStorage.getItem("checkboxSaved"));
-    setIsFilterMovies(checkboxSaved);
-    const searchResult = JSON.parse(localStorage.getItem("searchResult"));
-    setFoundMoviesList(searchResult);
     if (jwt) {
       setToken(jwt);
       if (movies) {
@@ -78,6 +78,29 @@ function App() {
         });
     }
   }
+
+  React.useEffect(() => {
+    const searchResult = localStorage.getItem("searchResult");
+    if (searchResult) {
+      setFoundMoviesList(JSON.parse(searchResult));
+    }
+    const isChecked = localStorage.getItem("isChecked");
+    if (isChecked) {
+      setIsFilterMovies(JSON.parse(isChecked));
+    }
+    const shortResult = localStorage.getItem("shortResult");
+    if (shortResult) {
+      setFilterTimeMoviesCollection(JSON.parse(shortResult));
+    }
+    const isCheckedSaved = localStorage.getItem("isCheckedSaved");
+    if (isCheckedSaved) {
+      setIsFilterSavedMovies(JSON.parse(isCheckedSaved));
+    }
+    const shortResultSaved = localStorage.getItem("shortResultSaved");
+    if (shortResultSaved) {
+      setFilterTimeSavedMoviesCollection(JSON.parse(shortResultSaved));
+    }
+  }, [isLogged]);
 
   React.useEffect(() => {
     tokenCheck();
@@ -141,6 +164,10 @@ function App() {
     localStorage.removeItem("movies");
     localStorage.removeItem("savedMovies");
     localStorage.removeItem("searchResult");
+    localStorage.removeItem("isChecked");
+    localStorage.removeItem("isCheckedSaved");
+    localStorage.removeItem("shortResult");
+    localStorage.removeItem("shortResultSaved");
     setIsLogged(false);
     setMoviesCollection([]);
     setSavedMoviesCollection([]);
@@ -202,7 +229,6 @@ function App() {
   }
 
   function searchSavedMovies(searchText) {
-    setServerError(false);
     if (savedMoviesCollection.length > 0) {
       setFilterSavedMoviesCollection(search(savedMoviesCollection, searchText));
     } else {
@@ -211,6 +237,12 @@ function App() {
         .then((res) => {
           setSavedMoviesCollection(res);
           localStorage.setItem("savedMovies", JSON.stringify(res));
+          const result = search(res, searchText);
+          if (result.length > 0) {
+            setFoundError(false);
+          } else {
+            setFoundError(true);
+          }
           setFilterSavedMoviesCollection(
             search(savedMoviesCollection, searchText)
           );
@@ -235,39 +267,66 @@ function App() {
   function searchFilterTime(collection) {
     let result = [];
     collection.forEach((movie) => {
-      if (movie.duration <= 40) {
+      if (movie.duration <= SHORT_DURATION) {
         result.push(movie);
       }
     });
     return result;
   }
 
-  React.useEffect(() => {
-    setFoundError(false);
-    if (isFilterMovies) {
-      if (pathname.pathname === "/movies") {
-        if (moviesCollection.length > 0) {
-          const result = searchFilterTime(foundMoviesList);
-          if (result.length > 0) {
-            setFoundError(false);
-          } else {
-            setFoundError(true);
+  React.useEffect(
+    () => {
+      setFoundError(false);
+      localStorage.setItem("isChecked", isFilterMovies);
+      if (isLocationMovies) {
+        if (isFilterMovies) {
+          if (moviesCollection.length > 0) {
+            const result = searchFilterTime(foundMoviesList);
+            if (result.length > 0) {
+              setFoundError(false);
+            } else {
+              setFoundError(true);
+            }
+            setFilterTimeMoviesCollection(result);
+            localStorage.setItem("shortResult", JSON.stringify(result));
           }
-          setFilterTimeMoviesCollection(result);
-          localStorage.setItem("checkbox", JSON.stringify(result));
         }
-      } else if (pathname.pathname === "/saved-movies") {
-        const result = searchFilterTime(filterSavedMoviesCollection);
-        if (result.length > 0) {
-          setFoundError(false);
-        } else {
-          setFoundError(true);
+      } else {
+        localStorage.setItem("isCheckedSaved", isFilterSavedMovies);
+        if (isLocationSavedMovies) {
+          if (isFilterSavedMovies) {
+            if (moviesCollection.length > 0) {
+              const result = searchFilterTime(filterSavedMoviesCollection);
+              if (result.length > 0) {
+                setFoundError(false);
+              } else {
+                setFoundError(true);
+              }
+              setFilterTimeSavedMoviesCollection(result);
+              localStorage.setItem("shortResultSaved", JSON.stringify(result));
+            }
+          }
         }
-        setFilterTimeSavedMoviesCollection(result);
-        localStorage.setItem("checkboxSaved", JSON.stringify(result));
       }
-    }
-  }, [isFilterMovies]);
+    }, // eslint-disable-next-line
+    [isFilterMovies, isFilterSavedMovies]
+  );
+
+  function movieSaveInStore(movie) {
+    MainApi.saveMovie({ token, movie })
+      .then((res) => {
+        const movies = [...savedMoviesCollection, res];
+        localStorage.setItem("savedMovies", JSON.stringify(movies));
+        setSavedMoviesCollection((prev) => [...prev, res]);
+        if (isFilterSavedMovies) {
+          setFilterTimeSavedMoviesCollection((prev) => [...prev, res]);
+          setFilterSavedMoviesCollection((prev) => [...prev, res]);
+        } else {
+          setFilterSavedMoviesCollection((prev) => [...prev, res]);
+        }
+      })
+      .catch((err) => setServerError(true));
+  }
 
   function movieDeleteFromSavedMovies(id) {
     MainApi.deleteSavedMovie({ token, id })
@@ -281,22 +340,6 @@ function App() {
         setFilterTimeSavedMoviesCollection(
           filterMoviesById(filterTimeMoviesCollection, id)
         );
-      })
-      .catch((err) => setServerError(true));
-  }
-
-  function movieSaveInStore(movie) {
-    MainApi.saveMovie({ token, movie })
-      .then((res) => {
-        const movies = [...savedMoviesCollection, res];
-        localStorage.setItem("savedMovies", JSON.stringify(movies));
-        setSavedMoviesCollection((prev) => [...prev, res]);
-        if (isFilterMovies) {
-          setFilterTimeSavedMoviesCollection((prev) => [...prev, res]);
-          setFilterSavedMoviesCollection((prev) => [...prev, res]);
-        } else {
-          setFilterSavedMoviesCollection((prev) => [...prev, res]);
-        }
       })
       .catch((err) => setServerError(true));
   }
@@ -339,7 +382,7 @@ function App() {
           <Movies
             isLogged={isLogged}
             isFilterMovies={isFilterMovies}
-            setFilter={changeFilter}
+            changeFilter={changeFilter}
             moviesCollection={
               isFilterMovies ? filterTimeMoviesCollection : foundMoviesList
             }
@@ -357,10 +400,10 @@ function App() {
         <ProtectedRoute exact path="/saved-movies" isLogged={isLogged}>
           <SavedMovies
             isLogged={isLogged}
-            isFilterMovies={isFilterMovies}
-            setFilter={changeFilter}
+            isFilterSavedMovies={isFilterSavedMovies}
+            changeFilter={changeFilter}
             moviesCollection={
-              isFilterMovies
+              isFilterSavedMovies
                 ? filterTimeSavedMoviesCollection
                 : filterSavedMoviesCollection
             }

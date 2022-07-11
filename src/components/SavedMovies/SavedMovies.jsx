@@ -6,8 +6,6 @@ import { SearchForm } from "../SearchForm/SearchForm";
 import "./SavedMovies.css";
 export const SavedMovies = ({
   isLogged,
-  setFilter,
-  isFilterMovies,
   moviesCollection,
   searchMovies,
   searchSavedMovies,
@@ -15,16 +13,16 @@ export const SavedMovies = ({
   savedMovies,
   movieDeleteFromSavedMovies,
   movieSaveInStore,
-  serverError,
   clearAllErrors,
+  setSearchShortMovies,
+  isFilterSavedMovies,
+  changeFilter,
+  foundError,
+  serverError,
 }) => {
   React.useEffect(() => {
     clearAllErrors();
   }, []);
-
-  function changeFilter() {
-    setFilter();
-  }
 
   return (
     <section className="saved-movies">
@@ -39,8 +37,9 @@ export const SavedMovies = ({
         isSaved={true}
         searchMovies={searchMovies}
         searchSavedMovies={searchSavedMovies}
-        isFilterMovies={isFilterMovies}
+        isFilterSavedMovies={isFilterSavedMovies}
         changeFilter={changeFilter}
+        setSearchShortMovies={setSearchShortMovies}
       />
       <MovieCardList
         moviesCollection={moviesCollection}
@@ -49,7 +48,7 @@ export const SavedMovies = ({
         savedMovies={savedMovies}
         movieDeleteFromSavedMovies={movieDeleteFromSavedMovies}
         movieSaveInStore={movieSaveInStore}
-        foundError={false}
+        foundError={foundError}
         serverError={serverError}
       />
       <Footer />

@@ -7,7 +7,7 @@ import "./Movies.css";
 
 export const Movies = ({
   isLogged,
-  setFilter,
+  changeFilter,
   isFilterMovies,
   moviesCollection,
   searchSavedMovies,
@@ -23,9 +23,7 @@ export const Movies = ({
   React.useEffect(() => {
     clearAllErrors();
   }, []);
-  function changeFilter() {
-    setFilter();
-  }
+
   const [numberMoviesInDisplay, setNumberMoviesInDisplay] = React.useState(
     () => {
       const windowWidth = window.innerWidth;
@@ -38,6 +36,7 @@ export const Movies = ({
       } else return 5;
     }
   );
+
   const [numberMoviesAdd, setNumberMoviesAdd] = React.useState(() => {
     const windowWidth = window.innerWidth;
     if (windowWidth > 1279) {

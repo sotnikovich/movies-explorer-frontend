@@ -1,4 +1,5 @@
 import React from "react";
+import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import "./SearchForm.css";
 export const SearchForm = ({
   isSaved,
@@ -6,6 +7,7 @@ export const SearchForm = ({
   searchSavedMovies,
   isFilterMovies,
   changeFilter,
+  isFilterSavedMovies,
 }) => {
   const [validForm, setValidForm] = React.useState(true);
   const [textInput, setTextInput] = React.useState("");
@@ -21,9 +23,7 @@ export const SearchForm = ({
     e.preventDefault();
     searchSavedMovies(textInput);
   }
-  function handleChangeFilter() {
-    changeFilter();
-  }
+
   return (
     <>
       <form
@@ -48,32 +48,22 @@ export const SearchForm = ({
           ></button>
         </div>
         <div className="filter-checkbox">
-          <button
-            onClick={handleChangeFilter}
-            type="button"
-            className={
-              isFilterMovies
-                ? "filter-checkbox__button filter-checkbox__button_active"
-                : "filter-checkbox__button filter-checkbox__button_inactive"
-            }
-          ></button>
-          <p className="filter-checkbox__text">Короткометражки</p>
+          <FilterCheckbox
+            isFilterMovies={isFilterMovies}
+            changeFilter={changeFilter}
+            isFilterSavedMovies={isFilterSavedMovies}
+          />
         </div>
       </form>
       <span className="search-form__error">
         {validForm ? "" : "Нужно ввести ключевое слово"}
       </span>
       <div className="filter-checkbox_mobile">
-        <button
-          onClick={handleChangeFilter}
-          type="button"
-          className={
-            isFilterMovies
-              ? "filter-checkbox__button filter-checkbox__button_active"
-              : "filter-checkbox__button filter-checkbox__button_inactive"
-          }
-        ></button>
-        <p className="filter-checkbox__text">Короткометражки</p>
+        <FilterCheckbox
+          isFilterMovies={isFilterMovies}
+          changeFilter={changeFilter}
+          isFilterSavedMovies={isFilterSavedMovies}
+        />
       </div>
     </>
   );

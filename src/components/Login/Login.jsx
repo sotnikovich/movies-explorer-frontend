@@ -37,6 +37,7 @@ export const Login = ({ onLogin, clearErrors, loginError, setLoginError }) => {
               onChange={handleChangeInput}
               required
               autoComplete="off"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
             />
             <span className="login__error">{errors.email}</span>
           </div>
