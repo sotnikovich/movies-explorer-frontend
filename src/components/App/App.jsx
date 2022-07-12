@@ -229,25 +229,16 @@ function App() {
   }
 
   function searchSavedMovies(searchText) {
+    setServerError(false);
+    setIsLoadingMovies(true);
     if (savedMoviesCollection.length > 0) {
-      setFilterSavedMoviesCollection(search(savedMoviesCollection, searchText));
-    } else {
-      setIsLoadingMovies(true);
-      MainApi.getSavedMovies()
-        .then((res) => {
-          setSavedMoviesCollection(res);
-          localStorage.setItem("savedMovies", JSON.stringify(res));
-          const result = search(res, searchText);
-          if (result.length > 0) {
-            setFoundError(false);
-          } else {
-            setFoundError(true);
-          }
-          setFilterSavedMoviesCollection(
-            search(savedMoviesCollection, searchText)
-          );
-        })
-        .catch((err) => setServerError(true));
+      const result = search(savedMoviesCollection, searchText);
+      if (result.length > 0) {
+        setFoundError(false);
+      } else {
+        setFoundError(true);
+      }
+      setFilterSavedMoviesCollection(result);
       setTimeout(() => {
         setIsLoadingMovies(false);
       }, 1000);
