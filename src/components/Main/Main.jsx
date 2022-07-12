@@ -5,10 +5,16 @@ import { Portfolio } from "../Portfolio/Portfolio";
 import { Promo } from "../Promo/Promo";
 import { Techs } from "../Techs/Techs";
 
-export const Main = () => {
+export const Main = ({ isLogged }) => {
   return (
     <>
-      <Promo />
+      <Promo
+        isLogged={isLogged}
+        isMain={true}
+        isMovies={false}
+        isSavedMovies={false}
+        isProfile={false}
+      />
       <AboutProject />
       <Techs />
       <AboutMe />

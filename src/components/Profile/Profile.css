@@ -5,6 +5,19 @@
   justify-content: center;
   width: 100%;
 }
+.profile__error {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #ee3465;
+  margin: 0;
+  margin-bottom: 6px;
+  min-height: 12px;
+}
 .profile__title {
   font-style: normal;
   font-weight: 500;
@@ -45,6 +58,19 @@
   line-height: 13px;
   color: #000000;
 }
+.profile__input {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px;
+  letter-spacing: 0px;
+  text-align: right;
+  color: #000000;
+  border: none;
+}
+.profile__input:focus {
+  outline: 0;
+}
 .profile__buttons {
   display: flex;
   flex-direction: column;
@@ -65,6 +91,11 @@
   transition: 1s;
   cursor: pointer;
   background: #ffffff;
+}
+.profile__button_invalid {
+  color: rgba(0, 0, 0, 0.2);
+  background: white;
+  cursor: auto;
 }
 .profile__button-submit:hover {
   opacity: 0.7;

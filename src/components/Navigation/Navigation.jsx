@@ -8,6 +8,7 @@ export const Navigation = ({
   isMovies,
   isSavedMovies,
   isProfile,
+  onClick,
 }) => {
   const [isShowBurgerMenu, setIsShowBurgerMenu] = useState(false);
   const showBurgerMenu = () => {
@@ -22,12 +23,23 @@ export const Navigation = ({
         <>
           <div className="navigation__logged">
             <div className="navigation__links">
-              <Link to="/movies" className="navigation__movie">
+              <Link
+                to="/movies"
+                className={
+                  isMovies
+                    ? "navigation__movie"
+                    : "navigation__movie navigation__movie_thin"
+                }
+              >
                 Фильмы
               </Link>
               <Link
                 to="/saved-movies"
-                className="navigation__movie navigation__movie_thin"
+                className={
+                  isSavedMovies
+                    ? "navigation__movie"
+                    : "navigation__movie navigation__movie_thin"
+                }
               >
                 Сохранённые фильмы
               </Link>
